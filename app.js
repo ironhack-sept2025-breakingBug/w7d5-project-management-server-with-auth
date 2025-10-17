@@ -7,14 +7,11 @@ const app = express();
 require("./config")(app);
 
 // 👇 Start handling routes here
-const allRoutes = require("./routes");
-app.use("/api", allRoutes);
+app.use("/api", require("./routes"));
+app.use("/api", require("./routes/project.routes"));
+app.use("/api", require("./routes/task.routes"));
+app.use("/auth", require("./routes/auth.routes"));
 
-const projectRouter = require("./routes/project.routes");
-app.use("/api", projectRouter);
-
-const taskRouter = require("./routes/task.routes");
-app.use("/api", taskRouter);
 
 require("./error-handling")(app);
 
